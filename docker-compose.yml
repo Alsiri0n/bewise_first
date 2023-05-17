@@ -9,9 +9,28 @@ services:
     image: bewise_first
     ports:
       - 8080:8000
-    #environment:
-
     volumes:
       - .env:/usr/src/app/bewise_first/.env
     networks:
       - alsinet
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      - DATABASE_HOST=$DATABASE_HOST
+      - DATABASE_PORT=$DATABASE_PORT
+      - DATABASE_USER=$DATABASE_USER
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - DATABASE_NAME=$DATABASE_NAME
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+       - 5432:5432
+    networks:
+      - alsinet
+
+volumes:
+  db-data:
+    driver: local
