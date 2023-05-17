@@ -1,0 +1,17 @@
+version: "3.8"
+networks:
+  alsinet:
+    external: true
+services:
+  web:
+    build: .
+    container_name: bewise_first
+    image: bewise_first
+    ports:
+      - 8080:5050
+    #environment:
+
+    volumes:
+      - .env:/usr/src/app/bewise_first/.env
+    networks:
+      - alsinet
