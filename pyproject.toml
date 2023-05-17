@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "bewise-first"
+version = "0.1.0"
+description = ""
+authors = ["Ignatev Nikita <nikitaignatiev@gmail.com>"]
+readme = "README.md"
+packages = [{include = "bewise_first"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.95.2"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+
+
+[tool.poetry.group.prod.dependencies]
+uvicorn = "^0.22.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
