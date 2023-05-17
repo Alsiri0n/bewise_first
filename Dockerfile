@@ -8,4 +8,4 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --no-interaction --no-ansi --without dev --no-root
 RUN chmod +x /usr/src/app/bewise_first/boot.sh
 ENTRYPOINT ["./boot.sh"]
-EXPOSE 5050
+EXPOSE 8080
