@@ -11,11 +11,10 @@ if TYPE_CHECKING:
     from app.main import Application
 
 
-
-
+# Core work with DB
 class AsyncDatabaseSession:
     def __init__(self):
-        self.session = None
+        self.session: sessionmaker | None = None
         self._engine = None
 
     async def connect(self, app: "Application", settings: Settings):
@@ -28,9 +27,7 @@ class AsyncDatabaseSession:
             database=settings.database_name,
         )
         self._engine = create_async_engine(database_url, echo=True)
-        self.session = sessionmaker(
-            self._engine, class_=AsyncSession, expire_on_commit=False
-        )
+        self.session = sessionmaker(self._engine, class_=AsyncSession, expire_on_commit=False)
 
     async def disconnect(self):
         if self.session:

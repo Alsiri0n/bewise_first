@@ -1,14 +1,14 @@
-import aiohttp
 from aiohttp import TCPConnector
 from aiohttp.client import ClientSession
 from .models import APIResponse
 
 
+# Helper to request for internal API
 class APIAccessor:
     def __init__(self):
         self.session: ClientSession | None = None
 
-    async def get_data(self, url: str) -> list[APIResponse | None]:
+    async def get_data(self, url: str) -> list[APIResponse]:
         self.session = ClientSession(connector=TCPConnector(verify_ssl=False))
         q = []
         try:

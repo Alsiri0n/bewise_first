@@ -2,6 +2,7 @@ from pydantic import BaseSettings
 from functools import lru_cache
 
 
+# Loading data from config file
 class Settings(BaseSettings):
     database_host: str
     database_port: int
@@ -13,6 +14,7 @@ class Settings(BaseSettings):
         env_file = ".env"
 
 
+# Saving environment variables in cache
 @lru_cache()
 def get_settings() -> Settings:
     return Settings()

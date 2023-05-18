@@ -5,12 +5,9 @@ from .config import get_settings
 from contextlib import asynccontextmanager
 
 
+# Main class for run application
 def init_app():
     settings = get_settings()
-
-    # @asynccontextmanager
-    # async def lifespan(cur_app_ls: FastAPI):
-    #     pass
 
     cur_app = FastAPI()
     cur_app.add_event_handler(

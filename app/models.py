@@ -1,12 +1,14 @@
-from pydantic import BaseModel, validator, Field
+from pydantic import BaseModel, validator
 from datetime import datetime
 from dataclasses import dataclass
 from sqlalchemy import BigInteger, Column, Text, DateTime
 from sqlalchemy.orm import declarative_base
 
+
 Base = declarative_base()
 
 
+# Validation model for user request
 class UserRequest(BaseModel):
     questions_num: int
 
@@ -19,6 +21,7 @@ class UserRequest(BaseModel):
         return questions_num
 
 
+# Validation API response
 class APICategory(BaseModel):
     id: int
     title: str
@@ -27,6 +30,7 @@ class APICategory(BaseModel):
     clues_count: int
 
 
+# Validation API response
 class APIResponse(BaseModel):
     id: int
     answer: str
@@ -40,7 +44,12 @@ class APIResponse(BaseModel):
     invalid_count: int | None
     category: APICategory
 
+    def to_question(self) -> "QuestionModel":
+        return QuestionModel(q_id=self.id, q_text=self.question,
+                             a_text=self.answer, q_date=self.created_at.replace(tzinfo=None))
 
+
+# Dataclass for API question
 @dataclass
 class Question:
     q_id: int
@@ -49,6 +58,7 @@ class Question:
     q_date: datetime
 
 
+# ORM Model for SQL
 class QuestionModel(Base):
     __tablename__ = "questions"
     id = Column(BigInteger, primary_key=True, nullable=False)
@@ -56,3 +66,13 @@ class QuestionModel(Base):
     q_text = Column(Text, nullable=False)
     a_text = Column(Text, nullable=False)
     q_date = Column(DateTime, nullable=False)
+
+
+    # Convert ORM result to dataclass
+    def to_dc(self) -> Question:
+        return Question(
+            q_id=self.q_id,
+            q_text=self.q_text,
+            a_text=self.a_text,
+            q_date=self.q_date,
+        )
