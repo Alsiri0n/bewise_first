@@ -1,2 +1,2 @@
 #!/bin/bash
-exec uvicorn main:app --reload --host 0.0.0.0
+exec uvicorn app.main:Application --reload --host 0.0.0.0

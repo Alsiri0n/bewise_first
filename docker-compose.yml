@@ -11,6 +11,8 @@ services:
       - 8080:8000
     volumes:
       - .env:/usr/src/app/bewise_first/.env
+    depends_on:
+      - postgres
     networks:
       - alsinet
 
