@@ -10,6 +10,9 @@ packages = [{include = "bewise_first"}]
 python = "^3.11"
 fastapi = "^0.95.2"
 python-dotenv = "^1.0.0"
+sqlalchemy = "^2.0.13"
+aiohttp = "^3.8.4"
+asyncpg = "^0.27.0"
 
 
 [tool.poetry.group.dev.dependencies]

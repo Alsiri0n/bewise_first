@@ -1,4 +1,4 @@
-FROM python:bullseye
+FROM python:3.11
 RUN useradd bewise
 RUN mkdir -p /usr/src/app/bewise_first
 WORKDIR /usr/src/app/bewise_first
