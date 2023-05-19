@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-from .models import UserRequest, APIResponse
 from .apiaccessor import APIAccessor
 from .dbaccessor import DBAccessor
+from .models import UserRequest, APIResponse
 
 api = APIRouter()
 

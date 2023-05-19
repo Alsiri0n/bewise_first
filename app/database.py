@@ -1,9 +1,8 @@
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
 from typing import TYPE_CHECKING
-
-# from main import get_settings
 from sqlalchemy import URL
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import sessionmaker
+
 from .config import Settings
 
 
@@ -27,7 +26,9 @@ class AsyncDatabaseSession:
             database=settings.database_name,
         )
         self._engine = create_async_engine(database_url, echo=True)
-        self.session = sessionmaker(self._engine, class_=AsyncSession, expire_on_commit=False)
+        self.session = sessionmaker(
+            self._engine, class_=AsyncSession, expire_on_commit=False
+        )
 
     async def disconnect(self):
         if self.session:

@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from app.views import api
-from .core import create_stop_app_handler, create_start_app_handler
+
 from .config import get_settings
-from contextlib import asynccontextmanager
+from .core import create_stop_app_handler, create_start_app_handler
+from .views import api
 
 
 # Main class for run application
