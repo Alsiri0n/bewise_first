@@ -9,7 +9,10 @@ from alembic import context
 from dotenv import load_dotenv
 from app.models import Base
 
+# this is the Alembic Config object, which provides
+# access to the values within the .ini file in use.
 config = context.config
+
 if os.path.dirname(os.path.dirname(__file__)) == "/usr/src/app/bewise_first":
     config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
 else:
@@ -21,11 +24,6 @@ config.set_section_option(section, "DB_USER", os.getenv("DATABASE_USER"))
 config.set_section_option(section, "DB_PASS", os.getenv("DATABASE_PASSWORD"))
 config.set_section_option(section, "DB_HOST", os.getenv("DATABASE_HOST"))
 config.set_section_option(section, "DB_NAME", os.getenv("DATABASE_NAME"))
-
-
-# this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
-config = context.config
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
