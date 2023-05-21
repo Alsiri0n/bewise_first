@@ -12,7 +12,7 @@ services:
     volumes:
       - .env:/usr/src/app/bewise_first/.env
     depends_on:
-      - postgres-first
+      - postgres
     networks:
       - alsinet
 
