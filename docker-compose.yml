@@ -12,24 +12,20 @@ services:
     volumes:
       - .env:/usr/src/app/bewise_first/.env
     depends_on:
-      - postgres
+      - postgres-first
     networks:
       - alsinet
 
   postgres:
     image: postgres:15
-    container_name: postgres
+    container_name: postgres-first
     restart: unless-stopped
-    environment:
-      - DATABASE_HOST=$DATABASE_HOST
-      - DATABASE_PORT=$DATABASE_PORT
-      - POSTGRES_USER=$DATABASE_USER
-      - POSTGRES_PASSWORD=$DATABASE_PASSWORD
-      - POSTGRES_DB=$DATABASE_NAME
+    env_file:
+      - .env
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
-       - 5432:5432
+       - 15432:5432
     networks:
       - alsinet
 
